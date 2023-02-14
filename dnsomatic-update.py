@@ -68,9 +68,10 @@ def update_cache(ip: str) -> int:
     return 0
 
 
-def send_notification(msg: str, chat_id: int, token: str) -> None:
+async def send_notification(msg: str, chat_id: int, token: str) -> None:
     bot = telegram.Bot(token=token)
-    bot.sendMessage(chat_id=chat_id, text=msg)
+    async with bot:
+        await bot.sendMessage(chat_id=chat_id, text=msg)
     logger.info('Telegram Group Message Sent')
 
 
@@ -83,7 +84,7 @@ def send_update(ip: str, user: str, passwd: str) -> None:
     if USETELEGRAM:
         now = strftime("%B %d, %Y at %H:%M")
         notification_text = f"[{SITENAME}] WAN IP changed @ {now}. New IP == {ip}."  # noqa E501
-        send_notification(notification_text, CHATID, MYTOKEN)
+        asyncio.run(send_notification(notification_text, CHATID, MYTOKEN))
 
 
 def wireless_check() -> bool:
@@ -123,10 +124,6 @@ def main() -> None:
                 update_cache(current_ip)
                 logger.info(f"No cached IP, setting to {current_ip}")
                 send_update(current_ip, USERID, PASSWORD)
-
-        # TODO remove next lines used for testing telegram
-        current_ip = requests.get(IPADDR_SRC).text.rstrip('\n')
-        send_update(current_ip, USERID, PASSWORD)
 
         sleep(INTERVAL)
 
