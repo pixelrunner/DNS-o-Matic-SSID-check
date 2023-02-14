@@ -124,6 +124,10 @@ def main() -> None:
                 logger.info(f"No cached IP, setting to {current_ip}")
                 send_update(current_ip, USERID, PASSWORD)
 
+        # TODO remove next lines used for testing telegram
+        current_ip = requests.get(IPADDR_SRC).text.rstrip('\n')
+        send_update(current_ip, USERID, PASSWORD)
+
         sleep(INTERVAL)
 
 
