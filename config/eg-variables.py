@@ -1,5 +1,3 @@
-# testing dnsomatic from browser: https://updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com
-
 # rename this file to variables.py
 
 class Variables:
