@@ -21,7 +21,7 @@ Steps to setup
 1) Rename the variables file to "variables.py".
 2) update the variables file with your OpenDNS username and password
 3) Optional: Update the OpenDNS/DNS-o-Matic variables (MX, BackupMX, wildcard, etc.). More details here: https://www.dnsomatic.com/docs/api
-4) Optional: If you want to use Telegram then change the variable to "1", then update the variables. More details here: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API
+4) Optional: If you want to use Telegram then change the variable to "1", then update the variables. More details here: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API. I find the following good instructions for finding the chat ID: https://docs.influxdata.com/kapacitor/v1.6/event_handlers/telegram/
 5) Optional: If you want to check your wireless SSID, then set the variable to "1" and update the SSID you want to use.
 
 Testing
