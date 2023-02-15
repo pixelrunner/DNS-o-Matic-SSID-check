@@ -83,7 +83,7 @@ def send_update(ip: str, user: str, passwd: str) -> None:
     logger.info(f"DNS-O-Matic Response: {response.text}")
     if USETELEGRAM:
         now = strftime("%B %d, %Y at %H:%M")
-        notification_text = f"[{SITENAME}] WAN IP changed @ {now}. New IP == {ip}."  # noqa E501
+        notification_text = f"[{SITENAME}] WAN IP changed @ {now}. New IP == {ip}."
         asyncio.run(send_notification(notification_text, CHATID, MYTOKEN))
 
 
