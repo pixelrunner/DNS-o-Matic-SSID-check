@@ -1,4 +1,4 @@
-# DNS-o-Matic-SSID-check
+# DNS-o-Matic with Telegram and SSID check (for Mac)
 A DNS-o-Matic updater for Mac that checks wireless SSID and then commits if SSIDs match. Also has the ability to send a telegram message. 
 
 If you run on a non-Mac, then everything should work except the SSID check (so set to "0" or remove those references)
