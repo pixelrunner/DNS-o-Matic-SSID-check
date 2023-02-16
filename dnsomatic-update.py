@@ -94,13 +94,13 @@ def wireless_check() -> bool:
         if not DEPENDWIRELESS:
             return True
         elif SSID == macwifi.get_ssid():
-            logger.debug(f"WiFi checked. SSID matches {SSID}")
+            logger.debug(f'WiFi checked. SSID matches "{SSID}"')
             return True
 
-        logger.info(f"WiFi checked. SSID does not match {SSID}. Skipping for {INTERVAL} seconds.")
+        logger.info(f'WiFi checked. SSID does not match "{SSID}". Skipping for {INTERVAL} seconds.')
         return False
     except Exception as e:
-        logger.info(f"Error thrown when checking WiFi: {e}. Skipping for {INTERVAL} seconds.")
+        logger.info(f'Error thrown when checking WiFi. Skipping for {INTERVAL} seconds.')
         return False
 
 
