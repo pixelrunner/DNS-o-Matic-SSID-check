@@ -4,6 +4,7 @@ class Variables:
     userId = "userId"
     password = "passWord"
 
+    cronJob = False
     interval = 300
     host = "all.dnsomatic.com"
     wildcard = "NOCHG"
@@ -18,4 +19,8 @@ class Variables:
 
     dependWireless = 0
     wirelessSSID = "SSIDName"
+
+    healthcheckIOenabled = False
+    healthcheckIOurl = "https://hc-ping.com/XXXXXXXX-ZZZZ-YYYY-PPPP-TTTTTTTTTTTT"
+
     debug = 0

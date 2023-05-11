@@ -16,6 +16,7 @@ Vars = Variables()
 # mandatory vars
 USERID = Vars.userId
 PASSWORD = Vars.password
+CRONJOB = Vars.cronJob
 INTERVAL = Vars.interval
 HOST = Vars.host
 WILDCARD = Vars.wildcard
@@ -31,6 +32,8 @@ SITENAME = Vars.siteName
 DEPENDWIRELESS = Vars.dependWireless
 SSID = Vars.wirelessSSID
 DEBUG = Vars.debug
+HEALTHCHECKSENABLED = Vars.healthcheckIOenabled
+HEALTHCHECKSURL = Vars.healthcheckIOurl
 
 # --- Globals ---
 IPCACHE = "./config/ip.cache.txt"
@@ -105,7 +108,13 @@ def wireless_check() -> bool:
 
 
 def main() -> None:
-    while True:
+    # runAgain is used to either keep looping (with a sleep inbetween each loop) or just run once (if you are using Cron)
+    run_again = True
+
+    while run_again:
+        if HEALTHCHECKSENABLED:
+            # ping healthchecks to show it as still up
+            requests.get(HEALTHCHECKSURL)
         # check to see if wireless dependant and then check connected SSID against variable
         if wireless_check():
             # Grab current external IP
@@ -125,7 +134,10 @@ def main() -> None:
                 logger.info(f"No cached IP, setting to {current_ip}")
                 send_update(current_ip, USERID, PASSWORD)
 
-        sleep(INTERVAL)
+        if CRONJOB:
+            run_again = False
+        else:
+            sleep(INTERVAL)
 
 
 if __name__ == "__main__":
